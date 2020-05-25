@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import './switch.css'
 
 function Switch() {
@@ -14,6 +14,13 @@ function Switch() {
             document.body.classList.add('is-light-mode')
         }
     }
+
+    useEffect(() => {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            ref.current.setAttribute('checked', true)
+          }
+    }, [])
+
 
     return (
         <div className="dark-mode">
