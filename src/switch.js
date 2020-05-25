@@ -1,7 +1,9 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import './switch.css'
 
 function Switch() {
+
+    const [checked, setChecked] = useState(false)
 
     const ref = useRef(null)
     function handleChange(event){
@@ -17,7 +19,7 @@ function Switch() {
 
     useEffect(() => {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            ref.current.setAttribute('checked', true)
+            setChecked(true);
           }
     }, [])
 
@@ -25,7 +27,7 @@ function Switch() {
     return (
         <div className="dark-mode">
             <p className="dark-mode-title">Dark Mode</p>
-                <input ref={ref} onChange={handleChange} type="checkbox" className="checkbox" id="checkbox"/>
+                <input ref={ref} onChange={handleChange} type="checkbox" checked={checked} className="checkbox" id="checkbox"/>
                 <label className="switch" htmlFor="checkbox">
 
                 </label>
